@@ -6,7 +6,7 @@
   const TYPES={bottom:{name:'아래 참깨빵',short:'아래빵',cell:0,w:176,h:58,mass:1},patty:{name:'쇠고기 패티',short:'패티',cell:1,w:174,h:55,mass:1},sauce:{name:'특별한 소스',short:'소스',cell:2,w:190,h:42,mass:1},lettuce:{name:'양상추',short:'양상추',cell:3,w:194,h:53,mass:1},cheese:{name:'치즈',short:'치즈',cell:4,w:188,h:48,mass:1},pickle:{name:'피클',short:'피클',cell:5,w:144,h:42,mass:1},onion:{name:'양파',short:'양파',cell:6,w:152,h:39,mass:1},top:{name:'위 참깨빵',short:'위빵',cell:7,w:183,h:72,mass:1}};
   const CROPS={bottom:{y:105,h:280},patty:{y:85,h:300},sauce:{y:115,h:260},lettuce:{y:55,h:360},cheese:{y:65,h:315},pickle:{y:45,h:325},onion:{y:45,h:310},top:{y:30,h:350}};
   const ORDER=['patty','sauce','lettuce','cheese','pickle','onion','patty','lettuce'];
-  const sprite=new Image();sprite.src='assets/burger-ingredients.png';sprite.onload=draw;
+  const sprite=new Image();sprite.src='burger-ingredients.png';sprite.onload=draw;
   let state='start',score=0,count=0,best=Number(localStorage.getItem('burgerTowerBest')||0),moving=null,stack=[],particles=[],sauceDrops=[],last=0,sound=true,audio,toastTimer,direction=1,zoom=1;
   function beep(freq=440,dur=.08,type='sine',vol=.04){if(!sound)return;try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+dur);o.connect(g).connect(audio.destination);o.start();o.stop(audio.currentTime+dur)}catch{}}
   function itemAt(n){return ORDER[n%ORDER.length]}
